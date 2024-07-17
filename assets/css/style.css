@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+  font-family: "Poppins", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
@@ -36,7 +36,7 @@ nav .left ul .active a {
 
 nav .right a {
   text-decoration: none;
-  background-color: orangered;
+  background-color: #111727;
   padding: 8px 20px;
   border-radius: 5px;
   color: white;
@@ -95,4 +95,14 @@ form button {
 form button:hover {
   background-color: rgb(255, 166, 0);
   transition: 0.5s;
+}
+
+h2 {
+  text-align: center;
+}
+
+.img-as-bg {
+  height: 300px;
+  overflow: hidden;
+  background-size: cover;
 }
