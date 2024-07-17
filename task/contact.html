@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins"
+      rel="stylesheet"
+    />
+    <title>Personal Website</title>
+  </head>
+  <body>
+    <nav>
+      <!-- space between 2 layout -->
+      <!-- layout 1 -->
+      <div class="left">
+        <ul>
+          <img
+            class="logo"
+            src="../assets/images/dumbways.png"
+            alt="logo-image"
+          />
+
+          <li class="active">
+            <a href="../index.html">Home</a>
+          </li>
+          <li>
+            <a href="../contact.html">Blog</a>
+          </li>
+          <li>
+            <a href="./index.html">Task (card info/home)</a>
+          </li>
+          <li>
+            <a href="./contact.html">Task (contact form)</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- layout 2 -->
+      <div class="right">
+        <a href="../contact.html">Contact Me</a>
+      </div>
+    </nav>
+
+    <!-- formulir -->
+    <form>
+      <h2>GET IN TOUCH</h2>
+      <div>
+        <label for="nameInput">Name</label>
+        <input id="nameInput" type="text" required />
+      </div>
+
+      <div>
+        <label for="emailInput">Email</label>
+        <input id="emailInput" type="email" />
+      </div>
+
+      <div>
+        <label for="phoneInput">Phone Number</label>
+        <input id="phoneInput" type="tel" required pattern="[0-9]{11,}" />
+      </div>
+
+      <div>
+        <label for="subject">Subject</label>
+        <select id="subject">
+          <option hidden>select subject!</option>
+          <option>Computer Science</option>
+          <option>Information Technology</option>
+          <option>Civil Engineering</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="message">Your Message</label>
+        <textarea id="message"></textarea>
+      </div>
+
+      <div>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </body>
+</html>
