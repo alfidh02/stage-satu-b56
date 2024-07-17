@@ -1,5 +1,4 @@
-function getData(event) {
-  event.preventDefault();
+function getData() {
   let nameField = document.getElementById("nameInput").value;
   let emailField = document.getElementById("emailInput").value;
   let phoneField = document.getElementById("phoneInput").value;
