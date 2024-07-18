@@ -10,4 +10,6 @@ function getData() {
   console.log(phoneField);
   console.log(subjectField);
   console.log(messageField);
+
+  document.getElementById("nameInput").value = "";
 }
