@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/detail.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Poppins"
       rel="stylesheet"
@@ -45,98 +46,60 @@
 
     <!-- formulir -->
     <h2>Dumbways Web App</h2>
-    <div
-      style="
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        width: 80%;
-        margin: auto;
-        margin-top: 22px;
-        padding: 15px 50px;
-      "
-    >
+    <div id="main-container-detail">
       <!-- first column -->
-      <div style="flex: 50%">
+      <div id="first-column-detail">
         <img
+          id="self-portrait"
           src="./assets/images/img_detail.jpg"
           alt="self-portrait"
-          style="height: 45vh; width: 35vw; object-fit: cover"
         />
       </div>
 
       <!-- second column -->
-      <div
-        style="
-          flex: 50%;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-around;
-        "
-      >
-        <div style="width: 65%">
-          <p style="margin-top: 0px">
-            <strong>Duration</strong>
-          </p>
-          <div style="display: flex; align-items: center">
+      <div id="second-column-detail">
+        <div id="duration-section">
+          <p class="no-margin-top"><strong>Duration</strong></p>
+          <div class="icon-text">
             <i class="fa fa-calendar"> </i>
-            <p style="margin-left: 1vw; margin-top: 0px; margin-bottom: 0px">
-              12 Jan 2021 - 11 Feb 2021
-            </p>
+            <p class="no-margin">12 Jan 2021 - 11 Feb 2021</p>
           </div>
 
-          <div style="display: flex; align-items: center">
+          <div class="icon-text">
             <i class="fa fa-clock-o"> </i>
-            <p style="margin-left: 1vw">1 month</p>
+            <p class="no-margin-left">1 month</p>
           </div>
         </div>
 
-        <div style="width: 55%">
-          <p style="margin-top: 0px; margin-bottom: 0px">
-            <strong>Technologies</strong>
-          </p>
+        <div id="technologies-section">
+          <p class="no-margin-top"><strong>Technologies</strong></p>
 
-          <div style="display: flex; justify-content: start">
-            <div
-              style="
-                display: flex;
-                align-items: center;
-                margin-top: 0px;
-                margin-right: 5vw;
-              "
-            >
+          <div class="tech-row">
+            <div class="icon-text tech-item">
               <i class="fa fa-code"> </i>
-              <p style="margin-left: 1vw">React JS</p>
+              <p class="no-margin-left">React JS</p>
             </div>
-            <div style="display: flex; align-items: center; margin-top: 0px">
+            <div class="icon-text tech-item">
               <i class="fa fa-laptop"> </i>
-              <p style="margin-left: 1vw">JavaScript</p>
+              <p class="no-margin-left">JavaScript</p>
             </div>
           </div>
 
-          <div style="display: flex; justify-content: start; margin-top: -10px">
-            <div
-              style="
-                display: flex;
-                align-items: center;
-                margin-top: 0px;
-                margin-right: 5.4vw;
-              "
-            >
+          <div class="tech-row tech-row-margin">
+            <div class="icon-text tech-item">
               <i class="fa fa-code"> </i>
-              <p style="margin-left: 1vw">Node JS</p>
+              <p class="no-margin-left">Node JS</p>
             </div>
-            <div style="display: flex; align-items: center; margin-top: 0px">
+            <div class="icon-text tech-item">
               <i class="fa fa-laptop"> </i>
-              <p style="margin-left: 1vw">Socket IO</p>
+              <p class="no-margin-left">Socket IO</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div
-      style="width: 80%; padding-top: 2.5vh; margin: auto; text-align: justify"
-    >
+
+    <div id="description-container">
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium,
       quam! Eligendi, quisquam optio ad doloremque provident quae tenetur veniam
       voluptatibus, earum, iusto reprehenderit eaque alias deleniti debitis!
@@ -162,29 +125,13 @@
       distinctio ipsa. Fugit voluptatibus soluta exercitationem earum tempora
       voluptas perferendis nisi rerum deserunt. Illum, dolore? Sint, mollitia!
       Ex rerum nostrum quaerat laboriosam quidem necessitatibus, in, eius
-      expedita placeat voluptatibus et. Excepturi, sequi. Velit labore illo
-      voluptatem earum libero quisquam magni maiores? Omnis, officiis quo
-      suscipit explicabo itaque, obcaecati, molestias rem dolores magnam eveniet
-      cumque quisquam aut ut voluptatem expedita consequatur nesciunt quibusdam.
-      Distinctio fuga qui nulla pariatur quod eveniet nisi deleniti, eaque
-      laboriosam aliquid sed sequi, neque aspernatur ad impedit repudiandae
-      illo! <br />
-      Aliquam expedita totam ipsum asperiores cum dolorum molestiae
-      necessitatibus voluptatibus! Illum iure a dolor labore dicta beatae
-      expedita repellat recusandae dolore odit, omnis laborum unde natus
-      exercitationem quaerat deleniti tempore deserunt. Porro omnis, nulla harum
-      quasi libero explicabo ipsa. Tempore! Aut voluptate delectus doloremque
-      iste incidunt natus, debitis soluta quas quo nisi eveniet voluptates
-      consequuntur vero nam consequatur provident! Aspernatur molestias
-      recusandae, tenetur iste accusamus possimus sed perspiciatis fugiat quam.
-      Tempore tenetur ullam sunt asperiores voluptate magni mollitia amet illo
-      dolorem dignissimos, quis rem sit. Ipsum inventore, iusto repellat
-      cupiditate consequuntur fugiat tenetur eaque et nobis ab animi odit quasi.
-      Illum necessitatibus debitis impedit, vero consectetur dignissimos
-      mollitia aliquid obcaecati temporibus ab facere quidem, odio, quam maxime
-      tempora? Ea amet sequi, omnis exercitationem id sit assumenda repellendus
-      laborum reprehenderit fugiat. Adipisci quaerat aperiam ex, veniam itaque
-      minus asperiores error.
+      expedita placeat voluptatibus et. Excepturi, sequi. <br />
+      Velit labore illo voluptatem earum libero quisquam magni maiores? Omnis,
+      officiis quo suscipit explicabo itaque, obcaecati, molestias rem dolores
+      magnam eveniet cumque quisquam aut ut voluptatem expedita consequatur
+      nesciunt quibusdam. Distinctio fuga qui nulla pariatur quod eveniet nisi
+      deleniti, eaque laboriosam aliquid sed sequi, neque aspernatur ad impedit
+      repudiandae illo!
     </div>
   </body>
 </html>
