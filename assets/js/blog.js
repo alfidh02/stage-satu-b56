@@ -36,7 +36,7 @@ function renderBlog() {
 
   for (let i = 0; i < dataBlog.length; i++) {
     document.getElementById("contents").innerHTML += `
-    <div class="blog-list-item">
+    <div class="blog-list-item" onclick="window.location.href='./detail.html'">
           <div class="blog-image">
             <img src=${dataBlog[i].inputImage} alt="" />
           </div>
