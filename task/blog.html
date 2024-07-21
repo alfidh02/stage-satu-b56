@@ -1,0 +1,90 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/css/blog.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins"
+      rel="stylesheet"
+    />
+    <title>Creating Blog Page</title>
+  </head>
+
+  <body>
+    <nav>
+      <!-- justify content is space between 2 layout -->
+      <!-- layout 1 -->
+      <div class="left">
+        <ul>
+          <img
+            class="logo"
+            src="../assets/images/dumbways.png"
+            alt="logo-image"
+          />
+
+          <li class="active">
+            <a href="../index.html">Home</a>
+          </li>
+          <li>
+            <a href="./blog.html">Blog</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- layout 2 -->
+      <div class="right">
+        <a href="../contact.html">Contact Me</a>
+      </div>
+    </nav>
+
+    <!-- Blog -->
+    <!-- Form -->
+
+    <div class="blog">
+      <div class="blog-form">
+        <div class="form-container">
+          <form onsubmit="addBlog(event)">
+            <h1>Create Post Blog</h1>
+            <div>
+              <label for="input-blog-title">Title</label>
+              <input id="input-blog-title" />
+            </div>
+            <div>
+              <label for="input-blog-content">Content</label>
+              <textarea id="input-blog-content"></textarea>
+            </div>
+            <div>
+              <label>Upload Image</label>
+              <div class="input-blog-image-group">
+                <label for="input-blog-image">
+                  <p id="attach-image">Attach File</p>
+                  <img
+                    src="../assets/icons/attach.png"
+                    alt="file"
+                    style="width: 40px"
+                  />
+                </label>
+                <input
+                  type="file"
+                  id="input-blog-image"
+                  hidden
+                  onchange="prev_image(event)"
+                />
+              </div>
+            </div>
+            <div class="button-group">
+              <button>Post Blog</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div id="test"></div>
+      <hr class="line" />
+      <div id="contents" class="blog-list">
+        <!-- dynamic content would be here -->
+      </div>
+    </div>
+    <script src="../assets/js/blog.js"></script>
+  </body>
+</html>
