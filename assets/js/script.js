@@ -13,7 +13,7 @@ function getData() {
 
   document.getElementById("nameInput").value = "";
   document.getElementById("emailInput").value = "";
-  document.getElementById("phoneInour").value = "";
+  document.getElementById("phoneInput").value = "";
   document.getElementById("subject").value = "";
   document.getElementById("message").value = "";
 }
