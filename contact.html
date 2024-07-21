@@ -3,46 +3,46 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins"
+      rel="stylesheet"
+    />
     <title>Personal Website</title>
   </head>
   <body>
     <nav>
+      <!-- justify content is space between 2 layout -->
+      <!-- layout 1 -->
       <div class="left">
         <ul>
           <img
             class="logo"
-            src="./assets/images/dumbways.png"
+            src="../assets/images/dumbways.png"
             alt="logo-image"
           />
 
           <li class="active">
-            <a href="./index.html">Home</a>
+            <a href="../index.html">Home</a>
           </li>
           <li>
-            <a href="./task/blog.html">Blog</a>
-          </li>
-          <li>
-            <a href="./task/contact.html">Task (js contact form)</a>
+            <a href="../contact.html">Blog</a>
           </li>
         </ul>
       </div>
 
+      <!-- layout 2 -->
       <div class="right">
-        <a href="./contact.html">Contact Me</a>
+        <a href="../contact.html">Contact Me</a>
       </div>
     </nav>
 
     <!-- formulir -->
     <form>
+      <h2>GET IN TOUCH</h2>
       <div>
         <label for="nameInput">Name</label>
-        <input
-          id="nameInput"
-          type="text"
-          required
-          placeholder="input your name"
-        />
+        <input id="nameInput" type="text" required />
       </div>
 
       <div>
@@ -51,20 +51,24 @@
       </div>
 
       <div>
-        <label for="position">Position</label>
-        <select id="position">
-          <option hidden>Select Option!</option>
-          <option>Frontend Developer</option>
-          <option>Backend Developer</option>
-          <option>Fullstack Developer</option>
+        <label for="phoneInput">Phone Number</label>
+        <input id="phoneInput" type="tel" required pattern="[0-9]{11}" />
+      </div>
+
+      <div>
+        <label for="subject">Subject</label>
+        <select id="subject">
+          <option hidden>select subject!</option>
+          <option>Computer Science</option>
+          <option>Information Technology</option>
+          <option>Civil Engineering</option>
         </select>
       </div>
 
       <div>
-        <label for="address">Address</label> <textarea id="address"></textarea>
+        <label for="message">Your Message</label>
+        <textarea id="message"></textarea>
       </div>
-
-      <p id="result"></p>
 
       <div>
         <button type="submit" onclick="getData(event)">Submit</button>
