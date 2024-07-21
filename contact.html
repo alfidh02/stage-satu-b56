@@ -20,7 +20,10 @@
             <a href="./index.html">Home</a>
           </li>
           <li>
-            <a href="./contact.html">Blog</a>
+            <a href="./task/blog.html">Blog</a>
+          </li>
+          <li>
+            <a href="./task/contact.html">Task (js contact form)</a>
           </li>
         </ul>
       </div>
@@ -61,9 +64,13 @@
         <label for="address">Address</label> <textarea id="address"></textarea>
       </div>
 
+      <p id="result"></p>
+
       <div>
-        <button type="submit">Submit</button>
+        <button type="submit" onclick="getData(event)">Submit</button>
       </div>
     </form>
   </body>
+
+  <script src="./assets/js/script.js"></script>
 </html>
