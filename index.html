@@ -39,100 +39,36 @@
         <a href="./contact.html">Contact Me</a>
       </div>
     </nav>
-    <div
-      style="
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        border: 1px rgba(0, 0, 0, 0.084) solid;
-        width: 70%;
-        margin: auto;
-        margin-top: 22px;
-        padding: 15px 50px;
-        box-shadow: 0px 0px 30px rgba(224, 224, 224, 0.881);
-        border-radius: 15px;
-      "
-    >
+    <div id="main-container">
       <!-- first column -->
-      <div style="flex: 50%; margin-right: 50px">
+      <div id="first-column">
         <h2>Hi! Welcome to my hut</h2>
-        <p style="text-align: justify">
+        <p id="first-column-paragraph">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum
           facere qui similique, eligendi repellat rerum voluptate inventore
           ipsum, vitae tempore nihil velit exercitationem nobis in sed deserunt
           error eum accusamus. Labore, officiis suscipit, quo debitis, molestias
           magni necessitatibus reiciendis saepe iusto quos alias provident quod
         </p>
-        <button
-          style="
-            font-family: 'Poppins';
-            background-color: #111727;
-            color: white;
-            padding: 5px 25px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-            margin-right: 30px;
-            margin-top: 15px;
-            cursor: pointer;
-          "
-        >
-          <a href="./contact.html" style="text-decoration: none; color: white">
-            contact
-          </a>
+        <button id="contact-button">
+          <a id="contact-link" href="./contact.html">contact</a>
         </button>
         <a href="./assets/pdf/CV_Alfi.pdf">download CV</a>
-        <div style="margin-top: 30px">
-          <a
-            href="https://www.linkedin.com/in/alfi-dharmawan/"
-            style="text-decoration: none; color: black"
-            target="_blank"
-          >
-            <i
-              class="fa fa-linkedin-square"
-              style="font-size: 35px; margin-right: 14px; cursor: pointer"
-            >
-            </i>
+        <div id="social-links">
+          <a href="https://www.linkedin.com/in/alfi-dharmawan/" target="_blank">
+            <i class="fa fa-linkedin-square social-icon"></i>
           </a>
-          <a
-            href="https://www.instagram.com/alfidh._"
-            style="text-decoration: none; color: black"
-            target="_blank"
-          >
-            <i
-              class="fa fa-instagram"
-              style="font-size: 35px; margin-right: 14px; cursor: pointer"
-            ></i>
+          <a href="https://www.instagram.com/alfidh._" target="_blank">
+            <i class="fa fa-instagram social-icon"></i>
           </a>
-          <i
-            class="fa fa-facebook"
-            style="font-size: 35px; margin-right: 14px"
-          ></i>
-          <i class="fa fa-twitter" style="font-size: 35px"></i>
+          <i class="fa fa-facebook social-icon"></i>
+          <i class="fa fa-twitter social-icon"></i>
         </div>
       </div>
 
       <!-- second column -->
-      <div
-        style="
-          flex: 50%;
-          height: 100%;
-          background-color: white;
-          width: max-content;
-          border: 1px solid rgba(0, 0, 0, 0.084);
-          text-align: center;
-          border-radius: 15px;
-          box-shadow: 0px 0px 30px rgba(224, 224, 224, 0.881);
-        "
-      >
-        <div
-          class="img-as-bg"
-          style="
-            background-image: url('../assets/images/pede.jpg');
-            border-top-left-radius: inherit;
-            border-top-right-radius: inherit;
-          "
-        ></div>
+      <div id="second-column">
+        <div class="img-as-bg"></div>
         <h1>Alfi Dharmawan</h1>
         <p>Fullstack Developer</p>
       </div>
