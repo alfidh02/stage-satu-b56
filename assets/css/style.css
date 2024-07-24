@@ -6,54 +6,6 @@ body {
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
-/* navbar */
-nav {
-  display: flex;
-  justify-content: space-between;
-  background-color: #dbdbdb;
-  padding: 0 80px;
-  align-items: center;
-}
-
-nav .left ul {
-  display: flex;
-  align-items: center;
-  padding: 0;
-}
-
-nav .left ul img {
-  margin-right: 40px;
-}
-
-nav .left ul li a {
-  color: black;
-  text-decoration: none;
-  font-weight: 800;
-}
-
-nav .left ul .active a {
-  font-weight: bold;
-  color: orangered;
-}
-
-nav .right a {
-  text-decoration: none;
-  background-color: #111727;
-  padding: 8px 20px;
-  border-radius: 5px;
-  color: white;
-  font-weight: 800;
-}
-
-nav .left ul li {
-  list-style-type: none;
-  margin-right: 25px;
-}
-
-.logo {
-  width: 40px;
-}
-
 /* form styling */
 form {
   width: 35%;
