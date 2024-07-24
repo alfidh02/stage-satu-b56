@@ -45,3 +45,30 @@ nav .left ul li {
 .logo {
   width: 40px;
 }
+
+.btn-hamburger {
+  display: none;
+}
+
+.hamburger-container {
+  background-color: gray;
+  list-style-type: none;
+}
+
+.hamburger-hide {
+  display: none;
+}
+
+@media only screen and (max-width: 500px) {
+  .left ul li {
+    display: none;
+  }
+
+  .right a {
+    display: none;
+  }
+
+  .btn-hamburger {
+    display: block;
+  }
+}

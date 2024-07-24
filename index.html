@@ -38,8 +38,52 @@
 
       <div class="right">
         <a href="./contact.html">Contact Me</a>
+        <button class="btn-hamburger" onclick="toggleNavbar()">
+          <i class="fa fa-bars"></i>
+        </button>
       </div>
     </nav>
+
+    <!-- burger menu -->
+    <ul class="hamburger-container hamburger-hide" id="hamburger-container">
+      <li
+        style="
+          border: 2px solid white;
+          text-align: center;
+          padding: 10px;
+          color: white;
+          font-weight: bold;
+          font-size: x-large;
+        "
+      >
+        <a href="./index.html">Home</a>
+      </li>
+      <li
+        style="
+          border: 2px solid white;
+          text-align: center;
+          padding: 10px;
+          color: white;
+          font-weight: bold;
+          font-size: x-large;
+        "
+      >
+        <a href="./blog.html">Blog</a>
+      </li>
+      <li
+        style="
+          border: 2px solid white;
+          text-align: center;
+          padding: 10px;
+          color: white;
+          font-weight: bold;
+          font-size: x-large;
+        "
+      >
+        <a href="./contact.html">Contact Me</a>
+      </li>
+    </ul>
+
     <div id="main-container">
       <!-- first column -->
       <div id="first-column">
@@ -74,5 +118,6 @@
         <p>Fullstack Developer</p>
       </div>
     </div>
+    <script src="./assets/js/navbar.js"></script>
   </body>
 </html>

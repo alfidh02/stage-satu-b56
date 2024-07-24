@@ -129,3 +129,22 @@ h2 {
   border-radius: 15px;
   box-shadow: 0px 0px 30px rgba(224, 224, 224, 0.881);
 }
+
+.container {
+  display: flex;
+  flex-direction: row;
+  padding: 200px;
+}
+
+@media only screen and (max-width: 650px) {
+  .container {
+    padding: 100px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .container {
+    flex-direction: column;
+    padding: 0;
+  }
+}
