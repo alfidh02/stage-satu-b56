@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <link rel="stylesheet" href="./assets/css/navbar.css" />
+    <link rel="stylesheet" href="./assets/css/testimonial.css" />
+
     <link
       href="https://fonts.googleapis.com/css?family=Poppins"
       rel="stylesheet"
@@ -99,40 +101,24 @@
       </li>
     </ul>
 
-    <div id="main-container">
-      <!-- first column -->
-      <div id="first-column">
-        <h2>Hi! Welcome to my hut</h2>
-        <p id="first-column-paragraph">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum
-          facere qui similique, eligendi repellat rerum voluptate inventore
-          ipsum, vitae tempore nihil velit exercitationem nobis in sed deserunt
-          error eum accusamus. Labore, officiis suscipit, quo debitis, molestias
-          magni necessitatibus reiciendis saepe iusto quos alias provident quod
-        </p>
-        <button id="contact-button">
-          <a id="contact-link" href="./contact.html">contact</a>
-        </button>
-        <a href="./assets/pdf/CV_Alfi.pdf">download CV</a>
-        <div id="social-links">
-          <a href="https://www.linkedin.com/in/alfi-dharmawan/" target="_blank">
-            <i class="fa fa-linkedin-square social-icon"></i>
-          </a>
-          <a href="https://www.instagram.com/alfidh._" target="_blank">
-            <i class="fa fa-instagram social-icon"></i>
-          </a>
-          <i class="fa fa-facebook social-icon"></i>
-          <i class="fa fa-twitter social-icon"></i>
+    <div class="container">
+      <h1>My Testimonials</h1>
+      <div class="container-rating">
+        <h2>Rating By Star</h2>
+        <div class="rating">
+          <button class="rating-btn">All</button>
+          <button class="rating-btn">1 <i class="fa fa-star"></i></button>
+          <button class="rating-btn">2 <i class="fa fa-star"></i></button>
+          <button class="rating-btn">3 <i class="fa fa-star"></i></button>
+          <button class="rating-btn">4 <i class="fa fa-star"></i></button>
+          <button class="rating-btn">5 <i class="fa fa-star"></i></button>
         </div>
       </div>
 
-      <!-- second column -->
-      <div id="second-column">
-        <div class="img-as-bg"></div>
-        <h1>Alfi Dharmawan</h1>
-        <p>Fullstack Developer</p>
-      </div>
+      <section class="testimonials" id="testimonials"></section>
     </div>
-    <script src="./assets/js/navbar.js"></script>
+    <script src="assets/js/testimonial.js"></script>
+    <script src="assets/js/index.js"></script>
+    <script src="assets/js/nav.js"></script>
   </body>
 </html>
