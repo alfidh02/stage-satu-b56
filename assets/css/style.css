@@ -140,6 +140,15 @@ h2 {
   .container {
     padding: 100px;
   }
+
+  #main-container {
+    display: block;
+    text-align: center;
+  }
+
+  #second-column {
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 500px) {
