@@ -47,7 +47,7 @@ function renderBlog() {
               <button class="btn-post">Delete Post</button>
             </div>
             <h1>
-              <a href="blog-detail.html" target="_blank"
+              <a href="detail.html" target="_blank"
                 >${dataBlog[i].title}</a
               >
             </h1>
