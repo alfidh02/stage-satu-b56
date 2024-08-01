@@ -2,7 +2,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./assets/css/blog.css" />
     <title>Creating Blog Page</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -10,15 +9,18 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="./assets/css/blog.css" />
     <style>
       .active {
-        color: orangered !important;
+        font-weight: bold;
+        color: black !important;
       }
     </style>
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary ms-4">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.html">
           <img src="./assets/images/dumbways.png" style="width: 50px" />
@@ -44,12 +46,16 @@
                 >Blog</a
               >
             </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="testimonial.html"
+                >Testimonial</a
+              >
+            </li>
           </ul>
           <a href="contact.html" class="btn btn-danger">Contact Me</a>
         </div>
       </div>
     </nav>
-
     <!-- end navbar -->
 
     <!-- form -->
@@ -104,7 +110,6 @@
         <!-- dynamic content would be here -->
       </div>
     </div>
-
     <!-- end form -->
 
     <script
@@ -113,6 +118,5 @@
       crossorigin="anonymous"
     ></script>
     <script src="./assets/js/blog.js"></script>
-    <script src="./assets/js/navbar.js"></script>
   </body>
 </html>

@@ -58,7 +58,7 @@ h2 {
   height: 300px;
   overflow: hidden;
   background-size: cover;
-  background-image: url("../images/pede.jpg");
+  background-image: url("../images/luffy.jpg");
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
 }
@@ -115,6 +115,7 @@ h2 {
 }
 
 .social-icon {
+  color: #111727;
   margin-right: 14px;
   cursor: pointer;
 }
@@ -148,6 +149,7 @@ h2 {
 
   #second-column {
     width: 100%;
+    height: auto;
   }
 }
 
