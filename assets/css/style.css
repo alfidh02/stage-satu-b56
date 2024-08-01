@@ -137,6 +137,18 @@ h2 {
   padding: 200px;
 }
 
+.height-mobile {
+  height: 75%;
+}
+
+.card-width-mobile {
+  width: 50%;
+}
+
+.width-container-mobile {
+  width: 75%;
+}
+
 @media only screen and (max-width: 650px) {
   .container {
     padding: 100px;
@@ -150,6 +162,23 @@ h2 {
   #second-column {
     width: 100%;
     height: auto;
+  }
+
+  .height-mobile {
+    height: auto;
+  }
+
+  .card-width-mobile {
+    width: 100%;
+  }
+
+  .width-container-mobile {
+    width: 100%;
+  }
+
+  .small-container-mobile {
+    justify-content: center;
+    text-align: center;
   }
 }
 
