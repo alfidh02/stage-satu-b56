@@ -1,21 +1,13 @@
 let dataBlog = []; //parkiran
-var inputImage = "";
-
-function prev_image(event) {
-  var reader = new FileReader();
-  reader.readAsDataURL(event.target.files[0]);
-  reader.onload = function () {
-    inputImage = reader.result;
-  };
-  document.getElementById("attach-image").innerHTML =
-    event.target.files[0].name;
-}
 
 function addBlog(event) {
   event.preventDefault();
 
   let title = document.getElementById("input-blog-title").value;
   let content = document.getElementById("input-blog-content").value;
+  let inputImage = document.getElementById("input-blog-image").files; // cat.jpg
+
+  inputImage = URL.createObjectURL(inputImage[0]);
 
   //mobil
   let blog = {
@@ -25,10 +17,8 @@ function addBlog(event) {
     postAt: new Date(),
   };
 
-  dataBlog.push(blog); // dataBlog = [blog,blog]
-
-  console.log(dataBlog);
-
+  // console.log(dataBlog);
+  dataBlog.unshift(blog);
   renderBlog();
 }
 
