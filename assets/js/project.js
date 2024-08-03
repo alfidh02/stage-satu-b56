@@ -42,7 +42,7 @@ function renderBlog() {
               >
             </h1>
             <div class="detail-blog-content">
-              ${getFullDate(dataBlog[i].postAt)} | Ichsan Emrald Alamsyah
+              ${getFullDate(dataBlog[i].postAt)} | Alfi Dharmawan
             </div>
             <p>
             ${dataBlog[i].content}
