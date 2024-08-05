@@ -2,10 +2,38 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+app.set("view engine", "hbs");
+app.set("views", "views");
+
+// to access static files
+app.use("/assets", express.static("assets"));
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+const blogs = [];
+
 // routing
 app.get("/", (req, res) => {
-  res.send("hello world!!");
+  res.render("index");
 });
+app.get("/project", renderProject);
+app.get("/testimonial", renderTestimonial);
+app.get("/contact", renderContact);
+app.get("/detail", renderDetail);
+
+function renderProject(req, res) {
+  res.render("project");
+}
+function renderTestimonial(req, res) {
+  res.render("testimonial");
+}
+function renderContact(req, res) {
+  res.render("contact");
+}
+function renderDetail(req, res) {
+  res.render("detail");
+}
 
 app.listen(port, () => {
   console.log(`Server berjalan di port ${port}`);
