@@ -63,6 +63,7 @@
           <form
             action="/project"
             method="POST"
+            enctype="multipart/form-data"
             style="display: flex; flex-direction: column; align-items: center"
           >
             <h1 class="text-center mt-3"><strong>ADD MY PROJECT</strong></h1>
@@ -153,7 +154,7 @@
                   type="file"
                   class="form-control"
                   id="input-blog-image"
-                  name="image"
+                  name="image_uploaded"
                 />
               </div>
               <div class="d-flex justify-content-end">
@@ -171,7 +172,7 @@
         {{#each data}}
           <div class="blog-list-item" onclick="window.location.href='detail'">
             <div class="blog-image">
-              <img src="${dataBlog[i].inputImage}" alt="" />
+              <img src="{{this.image}}" alt="" />
             </div>
             <div class="blog-content">
               <div class="btn-group">
