@@ -27,7 +27,6 @@ app.use(express.json());
 
 const blogs = [];
 let imagePath = "";
-let trueImagePath = "";
 
 // routing
 app.get("/", (req, res) => {
