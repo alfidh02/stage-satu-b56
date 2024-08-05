@@ -36,7 +36,7 @@ app.get("/project", renderProject);
 app.post("/project", upload.single("image_uploaded"), addProject);
 app.get("/testimonial", renderTestimonial);
 app.get("/contact", renderContact);
-app.get("/detail", renderDetail);
+app.get("/detail/:blog_id", renderDetail);
 
 function renderProject(req, res) {
   res.render("project", {
@@ -45,12 +45,19 @@ function renderProject(req, res) {
 }
 function addProject(req, res) {
   imagePath = req.file.path.replace("views\\", "");
+
+  const id = blogs.length + 1;
   const { title, description } = req.body;
   const image = req.file ? imagePath : null;
+  const createdAt = new Date();
+  const author = "Alfi Dharmawan";
   const blog = {
+    id,
     title,
     description,
     image,
+    createdAt,
+    author,
   };
   blogs.unshift(blog);
   res.redirect("/project");
@@ -62,7 +69,14 @@ function renderContact(req, res) {
   res.render("contact");
 }
 function renderDetail(req, res) {
-  res.render("detail");
+  const id = req.params.blog_id;
+  const blog = blogs.find((blog) => blog.id == id);
+
+  console.log(blog.image);
+
+  res.render("detail", {
+    data: blog,
+  });
 }
 
 app.listen(port, () => {

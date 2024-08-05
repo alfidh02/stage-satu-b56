@@ -170,7 +170,10 @@
       <hr class="line" />
       <div id="contents" class="blog-list">
         {{#each data}}
-          <div class="blog-list-item" onclick="window.location.href='detail'">
+          <div
+            class="blog-list-item"
+            onclick="window.location.href='detail/{{this.id}}'"
+          >
             <div class="blog-image">
               <img src="{{this.image}}" alt="" />
             </div>
@@ -180,10 +183,12 @@
                 <button class="btn-post">Delete Post</button>
               </div>
               <h1>
-                <a href="detail" target="_blank">{{this.title}}</a>
+                <a href="detail/{{this.id}}" target="_blank">{{this.title}}</a>
               </h1>
               <div class="detail-blog-content">
-                | Alfi Dharmawan
+                {{this.createdAt}}
+                |
+                {{this.author}}
               </div>
               <p>
                 {{this.description}}

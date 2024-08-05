@@ -43,32 +43,28 @@
               <a class="nav-link" aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="project">My
+              <a class="nav-link active" aria-current="page" href="/project">My
                 Project</a>
             </li>
             <li class="nav-item">
               <a
                 class="nav-link"
                 aria-current="page"
-                href="testimonial"
+                href="/testimonial"
               >Testimonial</a>
             </li>
           </ul>
-          <a href="contact" class="btn btn-danger">Contact Me</a>
+          <a href="/contact" class="btn btn-danger">Contact Me</a>
         </div>
       </div>
     </nav>
 
     <!-- formulir -->
-    <h2>Dumbways Web App</h2>
+    <h2>{{data.title}}</h2>
     <div id="main-container-detail">
       <!-- first column -->
       <div id="first-column-detail">
-        <img
-          id="self-portrait"
-          src="/assets/images/img_detail.jpg"
-          alt="self-portrait"
-        />
+        <img id="self-portrait" src="/{{data.image}}" alt="self-portrait" />
       </div>
 
       <!-- second column -->
@@ -115,40 +111,7 @@
     </div>
 
     <div id="description-container">
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium,
-      quam! Eligendi, quisquam optio ad doloremque provident quae tenetur veniam
-      voluptatibus, earum, iusto reprehenderit eaque alias deleniti debitis!
-      Tempora, quos rerum! Perspiciatis ipsa facere inventore voluptatem, culpa
-      molestiae laudantium magnam incidunt atque nobis tenetur neque odit.
-      Repudiandae nihil ex, impedit quasi quis dolor, dolores mollitia veritatis
-      cum quibusdam doloribus molestiae aliquam! Rerum repellat expedita amet
-      numquam recusandae natus? Fugit vitae non ipsum similique perferendis,
-      voluptas nisi doloribus! Explicabo earum sapiente adipisci ipsum laborum
-      alias iste, repellat aperiam maiores, dignissimos dicta provident? Sed vel
-      suscipit vero placeat ullam omnis dicta rerum facilis officia molestiae
-      sint eum ad, consectetur, tempore excepturi totam. Similique consequuntur
-      qui dignissimos ab! Et temporibus repellat cumque labore id. Minus maiores
-      repellat deserunt ea officia? corporis explicabo quos dignissimos,
-      blanditiis quo aliquam possimus dolores quam accusamus suscipit beatae
-      vel? Illo porro soluta ratione, consectetur atque facere dicta quo. Quia
-      eveniet animi dolores veniam, ducimus, cupiditate velit ullam dolore
-      consequatur quidem sint, fugiat odio voluptates voluptatem sit minus
-      veritatis esse enim? Dolor officiis officia iusto magni odio assumenda
-      quibusdam.
-      <br />Debitis quam at sit est id distinctio quod possimus dolores placeat.
-      Cum labore autem vitae aperiam voluptatum minima natus voluptates
-      aspernatur! Iusto rerum blanditiis ad incidunt deserunt? Ad, distinctio
-      ipsa. Fugit voluptatibus soluta exercitationem earum tempora voluptas
-      perferendis nisi rerum deserunt. Illum, dolore? Sint, mollitia! Ex rerum
-      nostrum quaerat laboriosam quidem necessitatibus, in, eius expedita
-      placeat voluptatibus et. Excepturi, sequi.
-      <br />
-      Velit labore illo voluptatem earum libero quisquam magni maiores? Omnis,
-      officiis quo suscipit explicabo itaque, obcaecati, molestias rem dolores
-      magnam eveniet cumque quisquam aut ut voluptatem expedita consequatur
-      nesciunt quibusdam. Distinctio fuga qui nulla pariatur quod eveniet nisi
-      deleniti, eaque laboriosam aliquid sed sequi, neque aspernatur ad impedit
-      repudiandae illo!
+      {{data.description}}
     </div>
   </body>
 </html>
