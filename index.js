@@ -18,12 +18,19 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 app.get("/project", renderProject);
+app.post("/project", addProject);
 app.get("/testimonial", renderTestimonial);
 app.get("/contact", renderContact);
 app.get("/detail", renderDetail);
 
 function renderProject(req, res) {
-  res.render("project");
+  res.render("project", {
+    data: blogs,
+  });
+}
+function addProject(req, res) {
+  blogs.unshift(req.body);
+  res.redirect("/project");
 }
 function renderTestimonial(req, res) {
   res.render("testimonial");
