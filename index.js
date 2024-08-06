@@ -1,4 +1,5 @@
 const express = require("express");
+const { create } = require("hbs");
 const app = express();
 const multer = require("multer");
 const port = 3000;
@@ -37,12 +38,16 @@ app.post("/project", upload.single("image_uploaded"), addProject);
 app.get("/testimonial", renderTestimonial);
 app.get("/contact", renderContact);
 app.get("/detail/:blog_id", renderDetail);
+app.get("/edit-project/:blog_id", renderEdit);
+app.post("/edit-project/:blog_id", editProject);
+app.get("/delete-project/:blog_id", deleteProject);
 
 function renderProject(req, res) {
   res.render("project", {
     data: blogs,
   });
 }
+
 function addProject(req, res) {
   imagePath = req.file.path.replace("views\\", "");
 
@@ -62,21 +67,59 @@ function addProject(req, res) {
   blogs.unshift(blog);
   res.redirect("/project");
 }
+
 function renderTestimonial(req, res) {
   res.render("testimonial");
 }
+
 function renderContact(req, res) {
   res.render("contact");
 }
+
 function renderDetail(req, res) {
   const id = req.params.blog_id;
   const blog = blogs.find((blog) => blog.id == id);
 
-  console.log(blog.image);
-
   res.render("detail", {
     data: blog,
   });
+}
+
+function renderEdit(req, res) {
+  const id = req.params.blog_id;
+  const blog = blogs.find((blog) => blog.id == id);
+
+  res.render("edit-project", {
+    data: blog,
+  });
+}
+
+function editProject(req, res) {
+  const id = req.params.blog_id;
+  const index = blogs.findIndex((blog) => blog.id == id);
+
+  const blog = {
+    id: id,
+    title: req.body.title,
+    description: req.body.description,
+    image: blogs[index].image,
+    createdAt: new Date(),
+    author: "Alfi Dharmawan",
+  };
+
+  blogs[index] = blog;
+
+  res.redirect("/project");
+}
+
+function deleteProject(req, res) {
+  const id = req.params.blog_id;
+
+  const index = blogs.findIndex((blog) => blog.id == id);
+
+  blogs.splice(index, 1);
+
+  res.redirect("/project");
 }
 
 app.listen(port, () => {
