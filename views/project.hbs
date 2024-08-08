@@ -88,11 +88,17 @@
                     type="date"
                     class="form-control"
                     id="input-blog-start"
+                    name="startDate"
                   />
                 </div>
                 <div class="w-100 ms-3">
                   <label for="input-blog-end" class="form-label">End Date</label>
-                  <input type="date" class="form-control" id="input-blog-end" />
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="input-blog-end"
+                    name="endDate"
+                  />
                 </div>
               </div>
               <div class="mb-3">
@@ -114,7 +120,7 @@
                     <input
                       type="checkbox"
                       id="nodeCheck"
-                      name="nodeCheck"
+                      name="techCheck"
                       value="NodeJS"
                       class="me-3 shadow-sm"
                     />
@@ -122,7 +128,7 @@
                     <input
                       type="checkbox"
                       id="reactCheck"
-                      name="reactCheck"
+                      name="techCheck"
                       value="ReactJS"
                       class="me-3 mt-3 shadow-sm"
                     />
@@ -132,7 +138,7 @@
                     <input
                       type="checkbox"
                       id="nextCheck"
-                      name="nextCheck"
+                      name="techCheck"
                       value="NextJS"
                       class="me-3 shadow-sm"
                     />
@@ -140,7 +146,7 @@
                     <input
                       type="checkbox"
                       id="typesCheck"
-                      name="typesCheck"
+                      name="techCheck"
                       value="Typescript"
                       class="me-3 mt-3 shadow-sm"
                     />
@@ -166,7 +172,6 @@
         </div>
       </div>
 
-      <div id="test"></div>
       <hr class="line" />
       <div id="contents" class="blog-list">
         {{#each data}}

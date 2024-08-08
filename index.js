@@ -4,6 +4,7 @@ const multer = require("multer");
 const port = 3000;
 const path = require("path");
 const dbpsql = require("./assets/js/queries");
+const { start } = require("repl");
 
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "views"));
@@ -57,18 +58,54 @@ function addProject(req, res) {
     imagePath = req.file.path.replace("views\\", "");
 
     const id = blogs.length + 1;
-    const { title, description } = req.body;
+    const { title, description, startDate, endDate, techCheck } = req.body;
     const image = req.file ? imagePath : null;
+    const dateDiffStart = new Date(startDate);
+    const dateDiffEnd = new Date(endDate);
+    const dayAmount = `${
+      (dateDiffEnd - dateDiffStart) / (24 * 3600 * 1000)
+    } hari`;
     const createdAt = new Date();
     const author = "Alfi Dharmawan";
+    const months = [
+      "Jan",
+      "Feb",
+      "Maret",
+      "April",
+      "Mei",
+      "Juni",
+      "Juli",
+      "Agust",
+      "Sept",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    const strDate = startDate;
+    const edDate = endDate;
+    const dateBegin = strDate.split("-"); // turn the date into a list format
+    const dateFinal = edDate.split("-"); // turn the date into a list format
+    const dateStart = `${dateBegin[2]} ${months[dateBegin[1] - 1]} ${
+      dateBegin[0]
+    }`;
+    const dateEnd = `${dateFinal[2]} ${months[dateFinal[1] - 1]} ${
+      dateFinal[0]
+    }`;
+
     const blog = {
       id,
       title,
       description,
+      dateStart,
+      dateEnd,
+      dayAmount,
       image,
       createdAt,
       author,
+      techCheck,
     };
+    console.log(blog);
+
     blogs.unshift(blog);
     res.redirect("/project");
   } catch (e) {

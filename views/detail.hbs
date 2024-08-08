@@ -60,7 +60,7 @@
     </nav>
 
     <!-- formulir -->
-    <h2>{{data.title}}</h2>
+    <h2 class="mt-3">{{data.title}}</h2>
     <div id="main-container-detail">
       <!-- first column -->
       <div id="first-column-detail">
@@ -73,39 +73,27 @@
           <p class="no-margin-top"><strong>Duration</strong></p>
           <div class="icon-text">
             <i class="fa fa-calendar"> </i>
-            <p class="no-margin">12 Jan 2021 - 11 Feb 2021</p>
+            <p class="no-margin">{{data.dateStart}} - {{data.dateEnd}}</p>
           </div>
 
           <div class="icon-text mt-3">
             <i class="fa fa-clock-o"> </i>
-            <p class="no-margin-left mt-0 mb-0">1 month</p>
+            <p class="no-margin-left mt-0 mb-0">{{data.dayAmount}}</p>
           </div>
         </div>
 
         <div id="technologies-section">
           <p class="no-margin-top"><strong>Technologies</strong></p>
 
-          <div class="tech-row">
-            <div class="icon-text tech-item">
-              <i class="fa fa-code"> </i>
-              <p class="no-margin-left mt-0 mb-0">React JS</p>
+          {{#each data.techCheck}}
+            <div class="tech-row">
+              <div class="icon-text tech-item">
+                <i class="fa fa-code"> </i>
+                <p class="no-margin-left mt-0 mb-2">{{this}}</p>
+              </div>
             </div>
-            <div class="icon-text tech-item">
-              <i class="fa fa-laptop"> </i>
-              <p class="no-margin-left mt-0 mb-0">JavaScript</p>
-            </div>
-          </div>
+          {{/each}}
 
-          <div class="tech-row tech-row-margin mt-2">
-            <div class="icon-text tech-item">
-              <i class="fa fa-code"> </i>
-              <p class="no-margin-left mt-0 mb-0">Node JS</p>
-            </div>
-            <div class="icon-text tech-item ps-1">
-              <i class="fa fa-laptop"> </i>
-              <p class="no-margin-left mt-0 mb-0">Socket IO</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
