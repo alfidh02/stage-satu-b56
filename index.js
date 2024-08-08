@@ -44,12 +44,68 @@ app.post("/edit-project/:blog_id", editProject);
 app.get("/delete-project/:blog_id", deleteProject);
 
 // postgreSQL
-app.get("/test-project", dbpsql.getProjects);
-app.get("/test-project/:blog_id", dbpsql.getProjectById);
+app.get("/test-project", getProjects);
+app.get("/test-projects", (req, res) => {
+  dbpsql.getProjectsSample((error, results) => {
+    if (error) {
+      return res.status(500).send("Error retrieving projects");
+    }
+    res.render("detail-copy", {
+      data: results,
+    });
+  });
+});
+app.get("/test-project/:blog_id", getProjectById);
+
+async function getProjects(_, response) {
+  dbpsql.pool.query(
+    "SELECT * FROM project ORDER BY id ASC",
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.render("detail-copy", {
+        data: results.rows,
+      });
+    }
+  );
+}
+
+async function getProjectById(request, response) {
+  const id = parseInt(request.params.blog_id);
+
+  dbpsql.pool.query(
+    "SELECT * FROM project WHERE id = $1",
+    [id],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
+    }
+  );
+}
+
+async function getProjectsSample(request, response) {
+  dbpsql.pool.query(
+    "SELECT * FROM project ORDER BY id ASC",
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.render("/");
+    }
+  );
+}
 
 function renderProject(req, res) {
-  res.render("project", {
-    data: blogs,
+  dbpsql.getProjectsSample((error, results) => {
+    if (error) {
+      return res.status(500).send("Error retrieving projects");
+    }
+    res.render("project", {
+      data: results,
+    });
   });
 }
 
