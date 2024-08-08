@@ -1,9 +1,9 @@
 const express = require("express");
-const { create } = require("hbs");
 const app = express();
 const multer = require("multer");
 const port = 3000;
 const path = require("path");
+const dbpsql = require("./assets/js/queries");
 
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "views"));
@@ -42,6 +42,10 @@ app.get("/edit-project/:blog_id", renderEdit);
 app.post("/edit-project/:blog_id", editProject);
 app.get("/delete-project/:blog_id", deleteProject);
 
+// postgreSQL
+app.get("/test-project", dbpsql.getProjects);
+app.get("/test-project/:blog_id", dbpsql.getProjectById);
+
 function renderProject(req, res) {
   res.render("project", {
     data: blogs,
@@ -49,23 +53,28 @@ function renderProject(req, res) {
 }
 
 function addProject(req, res) {
-  imagePath = req.file.path.replace("views\\", "");
+  try {
+    imagePath = req.file.path.replace("views\\", "");
 
-  const id = blogs.length + 1;
-  const { title, description } = req.body;
-  const image = req.file ? imagePath : null;
-  const createdAt = new Date();
-  const author = "Alfi Dharmawan";
-  const blog = {
-    id,
-    title,
-    description,
-    image,
-    createdAt,
-    author,
-  };
-  blogs.unshift(blog);
-  res.redirect("/project");
+    const id = blogs.length + 1;
+    const { title, description } = req.body;
+    const image = req.file ? imagePath : null;
+    const createdAt = new Date();
+    const author = "Alfi Dharmawan";
+    const blog = {
+      id,
+      title,
+      description,
+      image,
+      createdAt,
+      author,
+    };
+    blogs.unshift(blog);
+    res.redirect("/project");
+  } catch (e) {
+    res.send(`<script>alert("Error! ${e.message}")</script>`);
+    // will display blank page with 404 here, alert is temporary
+  }
 }
 
 function renderTestimonial(req, res) {
