@@ -16,14 +16,13 @@ const getProjects = (response) => {
   });
 };
 
-const getProjectById = (request, response) => {
-  const id = parseInt(request.params.blog_id);
-
+const getProjectById = (id, response) => {
+  // id retrieved from app.get params
   pool.query("SELECT * FROM project WHERE id = $1", [id], (error, results) => {
     if (error) {
-      throw error;
+      throw response(error, null);
     }
-    response.status(200).json(results.rows);
+    response(null, results.rows);
   });
 };
 

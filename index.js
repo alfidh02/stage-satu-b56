@@ -39,17 +39,30 @@ app.post("/project", upload.single("image_uploaded"), addProject);
 app.get("/testimonial", renderTestimonial);
 app.get("/contact", renderContact);
 app.get("/detail/:blog_id", renderDetail);
-app.get("/edit-project/:blog_id", renderEdit);
-app.post("/edit-project/:blog_id", editProject);
-app.get("/delete-project/:blog_id", deleteProject);
+app.get("/edit-project/:id", renderEdit);
+app.post("/edit-project/:id", editProject);
+app.get("/delete-project/:id", deleteProject);
 
 function renderProject(req, res) {
-  dbpsql.getProjectsSample((error, results) => {
+  dbpsql.getProjects((error, results) => {
     if (error) {
       return res.status(500).send("Error retrieving projects");
     }
     res.render("project", {
       data: results,
+    });
+  });
+}
+
+function renderDetail(req, res) {
+  // req.params.blog_id => blog_id retrieved from app.get params
+  const id = parseInt(req.params.blog_id);
+  dbpsql.getProjectById(id, (error, results) => {
+    if (error) {
+      return res.status(500).send("Error retrieving projects");
+    }
+    res.render("detail", {
+      data: results[0],
     });
   });
 }
@@ -123,17 +136,8 @@ function renderContact(req, res) {
   res.render("contact");
 }
 
-function renderDetail(req, res) {
-  const id = req.params.blog_id;
-  const blog = blogs.find((blog) => blog.id == id);
-
-  res.render("detail", {
-    data: blog,
-  });
-}
-
 function renderEdit(req, res) {
-  const id = req.params.blog_id;
+  const id = req.params.id;
   const blog = blogs.find((blog) => blog.id == id);
 
   res.render("edit-project", {
@@ -142,7 +146,7 @@ function renderEdit(req, res) {
 }
 
 function editProject(req, res) {
-  const id = req.params.blog_id;
+  const id = req.params.id;
   const index = blogs.findIndex((blog) => blog.id == id);
 
   const blog = {
@@ -160,7 +164,7 @@ function editProject(req, res) {
 }
 
 function deleteProject(req, res) {
-  const id = req.params.blog_id;
+  const id = req.params.id;
 
   const index = blogs.findIndex((blog) => blog.id == id);
 
