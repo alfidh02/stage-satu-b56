@@ -27,7 +27,6 @@ app.use("/uploads", express.static(path.join(__dirname, "views/uploads")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const blogs = [];
 let imagePath = "";
 
 // routing
@@ -35,13 +34,14 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 app.get("/project", renderProject);
-app.post("/project", upload.single("image_uploaded"), addProject);
+// app.post("/project", upload.single("image_uploaded"), addProject);
 app.get("/testimonial", renderTestimonial);
 app.get("/contact", renderContact);
 app.get("/detail/:blog_id", renderDetail);
-app.get("/edit-project/:id", renderEdit);
-app.post("/edit-project/:id", editProject);
-app.get("/delete-project/:id", deleteProject);
+// app.get("/edit-project/:id", renderEdit);
+// app.post("/edit-project/:id", editProject);
+// app.get("/delete-project/:id", deleteProject);
+app.post("/create-project", upload.single("image_uploaded"), postProject);
 
 function renderProject(req, res) {
   dbpsql.getProjects((error, results) => {
@@ -67,64 +67,30 @@ function renderDetail(req, res) {
   });
 }
 
-function addProject(req, res) {
+function postProject(req, res) {
   try {
     imagePath = req.file.path.replace("views\\", "");
-
-    const id = blogs.length + 1;
-    const { title, description, startDate, endDate, techCheck } = req.body;
     const image = req.file ? imagePath : null;
-    const dateDiffStart = new Date(startDate);
-    const dateDiffEnd = new Date(endDate);
-    const dayAmount = `${
-      (dateDiffEnd - dateDiffStart) / (24 * 3600 * 1000)
-    } hari`;
-    const createdAt = new Date();
-    const author = "Alfi Dharmawan";
-    const months = [
-      "Jan",
-      "Feb",
-      "Maret",
-      "April",
-      "Mei",
-      "Juni",
-      "Juli",
-      "Agust",
-      "Sept",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
-    const strDate = startDate;
-    const edDate = endDate;
-    const dateBegin = strDate.split("-"); // turn the date into a list format
-    const dateFinal = edDate.split("-"); // turn the date into a list format
-    const dateStart = `${dateBegin[2]} ${months[dateBegin[1] - 1]} ${
-      dateBegin[0]
-    }`;
-    const dateEnd = `${dateFinal[2]} ${months[dateFinal[1] - 1]} ${
-      dateFinal[0]
-    }`;
 
     const blog = {
-      id,
-      title,
-      description,
-      dateStart,
-      dateEnd,
-      dayAmount,
-      image,
-      createdAt,
-      author,
-      techCheck,
+      title: `${req.body.title}`,
+      start_date: `${req.body.start_date}`,
+      end_date: `${req.body.end_date}`,
+      description: `${req.body.description}`,
+      techonologies: `${req.body.technologies}`,
+      image: `${image}`,
     };
+
     console.log(blog);
 
-    blogs.unshift(blog);
-    res.redirect("/project");
+    dbpsql.createProject(blog, (error, results) => {
+      if (error) {
+        res.status(500).send("Error creating projects");
+      }
+      res.redirect("/project");
+    });
   } catch (e) {
     res.send(`<script>alert("Error! ${e.message}")</script>`);
-    // will display blank page with 404 here, alert is temporary
   }
 }
 
@@ -136,42 +102,103 @@ function renderContact(req, res) {
   res.render("contact");
 }
 
-function renderEdit(req, res) {
-  const id = req.params.id;
-  const blog = blogs.find((blog) => blog.id == id);
+// function addProject(req, res) {
+//   try {
+//     imagePath = req.file.path.replace("views\\", "");
 
-  res.render("edit-project", {
-    data: blog,
-  });
-}
+//     const id = blogs.length + 1;
+//     const { title, description, startDate, endDate, techCheck } = req.body;
+//     const image = req.file ? imagePath : null;
+//     const dateDiffStart = new Date(startDate);
+//     const dateDiffEnd = new Date(endDate);
+//     const dayAmount = `${
+//       (dateDiffEnd - dateDiffStart) / (24 * 3600 * 1000)
+//     } hari`;
+//     const createdAt = new Date();
+//     const author = "Alfi Dharmawan";
+//     const months = [
+//       "Jan",
+//       "Feb",
+//       "Maret",
+//       "April",
+//       "Mei",
+//       "Juni",
+//       "Juli",
+//       "Agust",
+//       "Sept",
+//       "Oct",
+//       "Nov",
+//       "Dec",
+//     ];
+//     const strDate = startDate;
+//     const edDate = endDate;
+//     const dateBegin = strDate.split("-"); // turn the date into a list format
+//     const dateFinal = edDate.split("-"); // turn the date into a list format
+//     const dateStart = `${dateBegin[2]} ${months[dateBegin[1] - 1]} ${
+//       dateBegin[0]
+//     }`;
+//     const dateEnd = `${dateFinal[2]} ${months[dateFinal[1] - 1]} ${
+//       dateFinal[0]
+//     }`;
 
-function editProject(req, res) {
-  const id = req.params.id;
-  const index = blogs.findIndex((blog) => blog.id == id);
+//     const blog = {
+//       id,
+//       title,
+//       description,
+//       dateStart,
+//       dateEnd,
+//       dayAmount,
+//       image,
+//       createdAt,
+//       author,
+//       techCheck,
+//     };
+//     console.log(blog);
 
-  const blog = {
-    id: id,
-    title: req.body.title,
-    description: req.body.description,
-    image: blogs[index].image,
-    createdAt: new Date(),
-    author: "Alfi Dharmawan",
-  };
+//     blogs.unshift(blog);
+//     res.redirect("/project");
+//   } catch (e) {
+//     res.send(`<script>alert("Error! ${e.message}")</script>`);
+//     // will display blank page with 404 here, alert is temporary
+//   }
+// }
 
-  blogs[index] = blog;
+// function renderEdit(req, res) {
+//   const id = req.params.id;
+//   const blog = blogs.find((blog) => blog.id == id);
 
-  res.redirect("/project");
-}
+//   res.render("edit-project", {
+//     data: blog,
+//   });
+// }
 
-function deleteProject(req, res) {
-  const id = req.params.id;
+// function editProject(req, res) {
+//   const id = req.params.id;
+//   const index = blogs.findIndex((blog) => blog.id == id);
 
-  const index = blogs.findIndex((blog) => blog.id == id);
+//   const blog = {
+//     id: id,
+//     title: req.body.title,
+//     description: req.body.description,
+//     image: blogs[index].image,
+//     createdAt: new Date(),
+//     author: "Alfi Dharmawan",
+//   };
 
-  blogs.splice(index, 1);
+//   blogs[index] = blog;
 
-  res.redirect("/project");
-}
+//   res.redirect("/project");
+// }
+
+// function deleteProject(req, res) {
+//   const id = req.params.id;
+
+//   const index = blogs.findIndex((blog) => blog.id == id);
+
+//   blogs.splice(index, 1);
+
+//   res.redirect("/project");
+// }
 
 app.listen(port, () => {
   console.log(`Server berjalan di port ${port}`);
