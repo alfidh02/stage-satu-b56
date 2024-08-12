@@ -73,12 +73,12 @@
           <p class="no-margin-top"><strong>Duration</strong></p>
           <div class="icon-text">
             <i class="fa fa-calendar"> </i>
-            <p class="no-margin">{{data.start_date}} - {{data.end_date}}</p>
+            <p class="no-margin">{{startDate}} s/d {{endDate}}</p>
           </div>
 
           <div class="icon-text mt-3">
             <i class="fa fa-clock-o"> </i>
-            <p class="no-margin-left mt-0 mb-0">{{data.dayAmount}}</p>
+            <p class="no-margin-left mt-0 mb-0">{{data.duration}}</p>
           </div>
         </div>
 
@@ -88,7 +88,7 @@
           {{#each data.technologies}}
             <div class="tech-row">
               <div class="icon-text tech-item">
-                <i class="fa fa-code"> </i>
+                <i class="fa fa-laptop"> </i>
                 <p class="no-margin-left mt-0 mb-2">{{this}}</p>
               </div>
             </div>

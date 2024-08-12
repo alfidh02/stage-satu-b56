@@ -34,13 +34,12 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 app.get("/project", renderProject);
-// app.post("/project", upload.single("image_uploaded"), addProject);
 app.get("/testimonial", renderTestimonial);
 app.get("/contact", renderContact);
 app.get("/detail/:blog_id", renderDetail);
-// app.get("/edit-project/:id", renderEdit);
-// app.post("/edit-project/:id", editProject);
-// app.get("/delete-project/:id", deleteProject);
+app.get("/edit-project/:blog_id", renderEdit);
+app.post("/edit-project/:blog_id", editProject);
+app.get("/delete-project/:blog_id", deleteProject);
 app.post("/create-project", upload.single("image_uploaded"), postProject);
 
 function renderProject(req, res) {
@@ -63,6 +62,23 @@ function renderDetail(req, res) {
     }
     res.render("detail", {
       data: results[0],
+      startDate: results[0].start_date.toISOString().split("T")[0],
+      endDate: results[0].end_date.toISOString().split("T")[0],
+    });
+  });
+}
+
+function renderEdit(req, res) {
+  const id = parseInt(req.params.blog_id);
+
+  dbpsql.getProjectById(id, (error, results) => {
+    if (error) {
+      return res.status(500).send("Error retrieving projects" + error);
+    }
+    res.render("edit-project", {
+      data: results[0],
+      startDate: results[0].start_date.toISOString().split("T")[0],
+      endDate: results[0].end_date.toISOString().split("T")[0],
     });
   });
 }
@@ -71,17 +87,24 @@ function postProject(req, res) {
   try {
     imagePath = req.file.path.replace("views\\", "");
     const image = req.file ? imagePath : null;
+    const dateDiffStart = new Date(req.body.start_date);
+    const dateDiffEnd = new Date(req.body.end_date);
+    console.log(`${req.body.technologies}`);
+
+    // const techStack = req.body.technologies.split(",");
+    const durationProject = `${
+      (dateDiffEnd - dateDiffStart) / (24 * 3600 * 1000)
+    } hari`;
 
     const blog = {
       title: `${req.body.title}`,
       start_date: `${req.body.start_date}`,
       end_date: `${req.body.end_date}`,
       description: `${req.body.description}`,
-      techonologies: `${req.body.technologies}`,
+      technologies: req.body.technologies,
+      duration: `${durationProject}`,
       image: `${image}`,
     };
-
-    console.log(blog);
 
     dbpsql.createProject(blog, (error, results) => {
       if (error) {
@@ -100,6 +123,36 @@ function renderTestimonial(req, res) {
 
 function renderContact(req, res) {
   res.render("contact");
+}
+
+function editProject(req, res) {
+  try {
+    const blog = {
+      title: `${req.body.title}`,
+      description: `${req.body.description}`,
+      id: `${req.params.blog_id}`,
+    };
+
+    dbpsql.updateProject(blog, (error, results) => {
+      if (error) {
+        res.status(500).send("Error updating projects");
+      }
+      res.redirect("/project");
+    });
+  } catch (e) {
+    res.send(`<script>alert("Error! ${e.message}")</script>`);
+  }
+}
+
+function deleteProject(req, res) {
+  const id = parseInt(req.params.blog_id);
+
+  dbpsql.deleteProject(id, (error, results) => {
+    if (error) {
+      res.status(500).send("Error deleting projects");
+    }
+    res.redirect("/project");
+  });
 }
 
 // function addProject(req, res) {
@@ -161,43 +214,6 @@ function renderContact(req, res) {
 //     res.send(`<script>alert("Error! ${e.message}")</script>`);
 //     // will display blank page with 404 here, alert is temporary
 //   }
-// }
-
-// function renderEdit(req, res) {
-//   const id = req.params.id;
-//   const blog = blogs.find((blog) => blog.id == id);
-
-//   res.render("edit-project", {
-//     data: blog,
-//   });
-// }
-
-// function editProject(req, res) {
-//   const id = req.params.id;
-//   const index = blogs.findIndex((blog) => blog.id == id);
-
-//   const blog = {
-//     id: id,
-//     title: req.body.title,
-//     description: req.body.description,
-//     image: blogs[index].image,
-//     createdAt: new Date(),
-//     author: "Alfi Dharmawan",
-//   };
-
-//   blogs[index] = blog;
-
-//   res.redirect("/project");
-// }
-
-// function deleteProject(req, res) {
-//   const id = req.params.id;
-
-//   const index = blogs.findIndex((blog) => blog.id == id);
-
-//   blogs.splice(index, 1);
-
-//   res.redirect("/project");
 // }
 
 app.listen(port, () => {

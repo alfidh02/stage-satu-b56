@@ -30,18 +30,43 @@ const getProjectById = (id, response) => {
 };
 
 const createProject = (request, response) => {
-  // const { title, start_date, end_date, description, technologies, image } =
-  //   request.body;
   pool.query(
-    `INSERT INTO projectdumb (title, start_date, end_date, description, technologies, image, created_date, author) VALUES ($1, $2, $3, $4, $5, $6, NOW(), 'Alfi Dharmawan')`,
+    `INSERT INTO projectdumb (title, start_date, end_date, description, technologies, duration, image, created_date, author) VALUES ($1, $2, $3, $4, $5, $6, $7, NOW(), 'Alfi Dharmawan')`,
     [
       request.title,
       request.start_date,
       request.end_date,
       request.description,
       request.technologies,
+      request.duration,
       request.image,
     ],
+    (error, results) => {
+      if (error) {
+        throw response(error, null);
+      }
+      response(null, results.rows);
+    }
+  );
+};
+
+const updateProject = (request, response) => {
+  pool.query(
+    "UPDATE projecttask SET title = $1, description = $2 WHERE id = $3",
+    [request.title, request.description, request.id],
+    (error, results) => {
+      if (error) {
+        throw response(error, null);
+      }
+      response(null, results.rows);
+    }
+  );
+};
+
+const deleteProject = (id, response) => {
+  pool.query(
+    "DELETE FROM projecttask WHERE id = $1",
+    [id],
     (error, results) => {
       if (error) {
         throw response(error, null);
@@ -55,4 +80,6 @@ module.exports = {
   getProjects,
   getProjectById,
   createProject,
+  updateProject,
+  deleteProject,
 };
