@@ -4,7 +4,8 @@ const multer = require("multer");
 const port = 3000;
 const path = require("path");
 const dbpsql = require("./assets/js/queries");
-const { start } = require("repl");
+const db = require("./src/db");
+const { QueryTypes } = require("sequelize");
 
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "views"));
@@ -14,7 +15,7 @@ const storage = multer.diskStorage({
     cb(null, "views/uploads");
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname);
+    cb(null, Date.now() + file.originalname);
   },
 });
 
@@ -23,7 +24,6 @@ const upload = multer({ storage: storage });
 // to access static files
 app.use("/assets", express.static("assets"));
 app.use("/uploads", express.static(path.join(__dirname, "views/uploads")));
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -42,79 +42,122 @@ app.post("/edit-project/:blog_id", editProject);
 app.get("/delete-project/:blog_id", deleteProject);
 app.post("/create-project", upload.single("image_uploaded"), postProject);
 
-function renderProject(req, res) {
-  dbpsql.getProjects((error, results) => {
-    if (error) {
-      return res.status(500).send("Error retrieving projects");
-    }
+async function renderProject(req, res) {
+  try {
+    const project = `SELECT * FROM projectdumb ORDER BY id ASC`;
+    const results = await db.query(project, { type: QueryTypes.SELECT });
+
     res.render("project", {
       data: results,
     });
-  });
+  } catch (error) {
+    console.error("Error in render process :", error);
+    res.status(500).send("Error retrieving projects");
+  }
 }
 
-function renderDetail(req, res) {
+async function renderDetail(req, res) {
   // req.params.blog_id => blog_id retrieved from app.get params
-  const id = parseInt(req.params.blog_id);
-  dbpsql.getProjectById(id, (error, results) => {
-    if (error) {
-      return res.status(500).send("Error retrieving projects");
-    }
+  try {
+    const id = parseInt(req.params.blog_id);
+    const project = `SELECT * FROM projectdumb WHERE id = $1`;
+    const result = await db.query(project, {
+      type: QueryTypes.SELECT,
+      bind: [id],
+    });
+
     res.render("detail", {
-      data: results[0],
-      startDate: results[0].start_date.toISOString().split("T")[0],
-      endDate: results[0].end_date.toISOString().split("T")[0],
+      data: result[0],
+      startDate: result[0].start_date,
+      endDate: result[0].end_date,
     });
-  });
+  } catch (error) {
+    console.error("Error in render detail process :", error);
+    res.status(500).send("Error retrieving detail");
+  }
 }
 
-function renderEdit(req, res) {
-  const id = parseInt(req.params.blog_id);
+async function renderEdit(req, res) {
+  try {
+    const id = parseInt(req.params.blog_id);
+    const project = `SELECT * FROM projectdumb WHERE id = $1`;
+    const result = await db.query(project, {
+      type: QueryTypes.SELECT,
+      bind: [id],
+    });
 
-  dbpsql.getProjectById(id, (error, results) => {
-    if (error) {
-      return res.status(500).send("Error retrieving projects" + error);
-    }
     res.render("edit-project", {
-      data: results[0],
-      startDate: results[0].start_date.toISOString().split("T")[0],
-      endDate: results[0].end_date.toISOString().split("T")[0],
+      data: result[0],
+      startDate: result[0].start_date,
+      endDate: result[0].end_date,
     });
-  });
+  } catch (error) {
+    console.error("Error in render detail process :", error);
+    res.status(500).send("Error retrieving detail");
+  }
 }
 
-function postProject(req, res) {
+async function postProject(req, res) {
   try {
     imagePath = req.file.path.replace("views\\", "");
     const image = req.file ? imagePath : null;
     const dateDiffStart = new Date(req.body.start_date);
     const dateDiffEnd = new Date(req.body.end_date);
-    console.log(`${req.body.technologies}`);
 
     // const techStack = req.body.technologies.split(",");
     const durationProject = `${
       (dateDiffEnd - dateDiffStart) / (24 * 3600 * 1000)
     } hari`;
 
-    const blog = {
-      title: `${req.body.title}`,
-      start_date: `${req.body.start_date}`,
-      end_date: `${req.body.end_date}`,
-      description: `${req.body.description}`,
-      technologies: req.body.technologies,
-      duration: `${durationProject}`,
-      image: `${image}`,
-    };
+    const blog = [
+      req.body.title,
+      req.body.start_date,
+      req.body.end_date,
+      req.body.description,
+      req.body.technologies,
+      durationProject,
+      image,
+    ];
 
-    dbpsql.createProject(blog, (error, results) => {
-      if (error) {
-        res.status(500).send("Error creating projects");
-      }
-      res.redirect("/project");
-    });
+    const newProject = `INSERT INTO projectdumb (title, start_date, end_date, description, technologies, duration, image, created_date, author) VALUES ($1, $2, $3, $4, $5, $6, $7, NOW(), 'Alfi Dharmawan')`;
+
+    await db.query(newProject, { type: QueryTypes.INSERT, bind: blog });
+    res.redirect("/project");
   } catch (e) {
     res.send(`<script>alert("Error! ${e.message}")</script>`);
   }
+}
+
+async function editProject(req, res) {
+  try {
+    const blog = [req.body.title, req.body.description, req.params.blog_id];
+
+    const updateProject = `UPDATE projectdumb SET title = $1, description = $2 WHERE id = $3`;
+
+    await db.query(updateProject, { bind: blog });
+    res.redirect("/project");
+  } catch (e) {
+    res.send(`<script>alert("Error! ${e.message}")</script>`);
+  }
+}
+
+async function deleteProject(req, res) {
+  try {
+    const id = parseInt(req.params.blog_id);
+    const deleteProject = `DELETE FROM projectdumb WHERE id = $1`;
+
+    await db.query(deleteProject, { bind: [id] });
+    res.redirect("/project");
+  } catch (error) {
+    res.send(`<script>alert("Error! ${e.message}")</script>`);
+  }
+
+  dbpsql.deleteProject(id, (error, results) => {
+    if (error) {
+      res.status(500).send("Error deleting projects");
+    }
+    res.redirect("/project");
+  });
 }
 
 function renderTestimonial(req, res) {
@@ -123,36 +166,6 @@ function renderTestimonial(req, res) {
 
 function renderContact(req, res) {
   res.render("contact");
-}
-
-function editProject(req, res) {
-  try {
-    const blog = {
-      title: `${req.body.title}`,
-      description: `${req.body.description}`,
-      id: `${req.params.blog_id}`,
-    };
-
-    dbpsql.updateProject(blog, (error, results) => {
-      if (error) {
-        res.status(500).send("Error updating projects");
-      }
-      res.redirect("/project");
-    });
-  } catch (e) {
-    res.send(`<script>alert("Error! ${e.message}")</script>`);
-  }
-}
-
-function deleteProject(req, res) {
-  const id = parseInt(req.params.blog_id);
-
-  dbpsql.deleteProject(id, (error, results) => {
-    if (error) {
-      res.status(500).send("Error deleting projects");
-    }
-    res.redirect("/project");
-  });
 }
 
 // function addProject(req, res) {

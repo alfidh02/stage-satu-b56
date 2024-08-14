@@ -52,7 +52,7 @@ const createProject = (request, response) => {
 
 const updateProject = (request, response) => {
   pool.query(
-    "UPDATE projecttask SET title = $1, description = $2 WHERE id = $3",
+    "UPDATE projectdumb SET title = $1, description = $2 WHERE id = $3",
     [request.title, request.description, request.id],
     (error, results) => {
       if (error) {
@@ -65,7 +65,7 @@ const updateProject = (request, response) => {
 
 const deleteProject = (id, response) => {
   pool.query(
-    "DELETE FROM projecttask WHERE id = $1",
+    "DELETE FROM projectdumb WHERE id = $1",
     [id],
     (error, results) => {
       if (error) {
