@@ -52,7 +52,19 @@
               >Testimonial</a>
             </li>
           </ul>
-          <a href="contact" class="btn btn-danger">Contact Me</a>
+          {{#if loggedIn}}
+            <a href="contact" class="btn btn-primary">Contact Me</a>
+            <a href="logout" class="btn btn-danger ms-3">Logout</a>
+          {{else}}
+            <a
+              href="register"
+              class="text-decoration-none text-dark me-3"
+            >Register</a>
+            <a
+              href="login"
+              class="text-decoration-none text-dark me-3"
+            >Login</a>
+          {{/if}}
         </div>
       </div>
     </nav>
@@ -74,12 +86,14 @@
               <div
                 class="d-flex flex-row align-items-center small-container-mobile"
               >
-                <a
-                  href="contact.html"
-                  class="btn me-4"
-                  style="background-color: #111727; color: white"
-                >Contact</a>
-                <a href="/assets/pdf/CV_Alfi.pdf">View CV</a>
+                {{#if loggedIn}}
+                  <a
+                    href="/contact"
+                    class="btn me-4"
+                    style="background-color: #111727; color: white"
+                  >Contact</a>
+                  <a href="/assets/pdf/CV_Alfi.pdf">View CV</a>
+                {{/if}}
               </div>
             </div>
             <div id="social-links" class="ps-3">

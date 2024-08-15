@@ -18,7 +18,7 @@
   <body>
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary ps-4">
-      <div class="container-fluid">
+      <div class="container-fluid" style="display: blo;">
         <a class="navbar-brand" href="/">
           <img src="/assets/images/dumbways.png" style="width: 50px" />
         </a>
@@ -50,7 +50,20 @@
               >Testimonial</a>
             </li>
           </ul>
-          <a href="contact" class="btn btn-danger">Contact Me</a>
+
+          {{#if loggedIn}}
+            <a href="contact" class="btn btn-primary">Contact Me</a>
+            <a href="logout" class="btn btn-danger ms-3">Logout</a>
+          {{else}}
+            <a
+              href="register"
+              class="text-decoration-none text-dark me-3"
+            >Register</a>
+            <a
+              href="login"
+              class="text-decoration-none text-dark me-3"
+            >Login</a>
+          {{/if}}
         </div>
       </div>
     </nav>
@@ -58,6 +71,7 @@
 
     <!-- form -->
     <div class="blog">
+      {{#if loggedIn}}
       <div>
         <div class="form-container">
           <form
@@ -171,6 +185,7 @@
           </form>
         </div>
       </div>
+      {{/if}}
 
       <hr class="line" />
       <div id="contents" class="blog-list">
@@ -180,6 +195,7 @@
               <img src="{{this.image}}" alt="Project Image" />
             </div>
             <div class="blog-content">
+              {{#if ../loggedIn}}
               <div class="d-flex justify-content-end btn-group">
                 <button
                   class="btn-edit me-3"
@@ -190,6 +206,7 @@
                   onclick="window.location.href='/delete-project/{{this.id}}'"
                 >Delete Post</button>
               </div>
+              {{/if}}
               <h1>
                 <a href="detail/{{this.id}}">{{this.title}}</a>
               </h1>
