@@ -188,13 +188,6 @@ async function deleteProject(req, res) {
   } catch (error) {
     res.send(`<script>alert("Error! ${e.message}")</script>`);
   }
-
-  dbpsql.deleteProject(id, (error, results) => {
-    if (error) {
-      res.status(500).send("Error deleting projects");
-    }
-    res.redirect("/project");
-  });
 }
 
 function renderTestimonial(req, res) {
