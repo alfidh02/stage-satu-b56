@@ -1,13 +1,14 @@
 const express = require("express");
 const app = express();
 const multer = require("multer");
-const port = 3000;
 const path = require("path");
-const dbpsql = require("./assets/js/queries");
-const db = require("./src/db");
+const db = require("./src/db").default;
 const { QueryTypes } = require("sequelize");
 const session = require("express-session");
 const flash = require("express-flash");
+
+require("dotenv").config();
+const port = process.env.PORT || 5000;
 
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "views"));
