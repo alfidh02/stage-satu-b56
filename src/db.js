@@ -1,12 +1,15 @@
 require("dotenv").config();
-import { Sequelize } from "sequelize";
-import { production, development } from "../config/config.js";
+
+const { Sequelize } = require("sequelize");
+const config = require("../config/config.js");
 const envConfig =
-  process.env.NODE_ENV === "production" ? production : development;
+  process.env.NODE_ENV === "production"
+    ? config.production
+    : config.development;
 
 const db = new Sequelize({
   ...envConfig,
   dialectModule: require("pg"),
 });
 
-export default db;
+module.exports = db;
